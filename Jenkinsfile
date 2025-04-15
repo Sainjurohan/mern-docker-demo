@@ -9,21 +9,24 @@ pipeline {
         stage('Checkout/ Cloning Repo') {
             steps {
                 echo "Cloning repository..."
-                sh 'git clone https://github.com/Sainjurohan/mern-docker-demo.git'
+                sh '''
+                rm -rf mern-docker-demo
+                git clone https://github.com/Sainjurohan/mern-docker-demo.git
+                '''
             }
         }
 
         stage ('Build Docker Images') {
             steps{
                 echo "Building Docker Images for Backend and Frontend"
-                sh 'docker compose -f docker-compose.yml build'
+                sh 'docker compose -f docker-compose.yaml build'
             }
         }
 
         stage('Run Containers') {
             steps{
                 echo "Starting the containers using docker compose"
-                sh 'docker compose -f docker-compose.yml up -d'
+                sh 'docker compose -f docker-compose.yaml up -d'
             }
         }
     }
