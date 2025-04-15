@@ -9,8 +9,7 @@ pipeline {
         stage('Checkout/ Cloning Repo') {
             steps {
                 echo "Cloning repository..."
-                sh 'git clone https://github.com/Pravesh-Sudha/MERN-docker-compose.git
-'
+                sh 'git clone https://github.com/Sainjurohan/mern-docker-demo.git'
             }
         }
 
