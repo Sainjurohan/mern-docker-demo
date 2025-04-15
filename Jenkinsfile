@@ -16,14 +16,14 @@ pipeline {
         stage ('Build Docker Images') {
             steps{
                 echo "Building Docker Images for Backend and Frontend"
-                sh 'docker-compose -f docker-compose.yml build'
+                sh 'docker compose -f docker-compose.yml build'
             }
         }
 
         stage('Run Containers') {
             steps{
                 echo "Starting the containers using docker compose"
-                sh 'docker-compose -f docker-compose.yml up -d'
+                sh 'docker compose -f docker-compose.yml up -d'
             }
         }
     }
