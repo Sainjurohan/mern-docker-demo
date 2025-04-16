@@ -38,7 +38,7 @@ services:
 
   # Prometheus - metrices collector
   prometheus:
-    image: prom/Prometheus
+    image: prom/prometheus
     container_name: prometheus
     volumes:
       - ./prometheus.yaml:/etc/prometheus/prometheus.yaml
