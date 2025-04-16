@@ -37,7 +37,7 @@ services:
     restart: unless-stopped
 
   # Prometheus - metrices collector
-  Prometheus:
+  prometheus:
     image: prom/Prometheus
     container_name: prometheus
     volumes:
