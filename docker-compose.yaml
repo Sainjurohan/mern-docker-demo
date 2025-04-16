@@ -26,7 +26,35 @@ services:
     networks:
       - mern_network
     volumes:
-      - mongo-data:/data/db  
+      - mongo-data:/data/db
+
+  # Node Exporter - for syetem metrices
+  node-exporter:
+    image: prom/node-exporter
+    container_name: node-exporter
+    ports:
+      - "9100:9100"
+    restart: unless-stopped
+
+  # Prometheus - metrices collector
+  Prometheus:
+    image: prom/Prometheus
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yaml:/etc/prometheus/prometheus.yaml
+    ports:
+      - "9090:9090"
+    depends_on:
+      - node-exporter
+
+  # Grafana - metrices' dashboard
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3001:3000"
+    depends_on:
+      - prometheus
 
 networks:
   mern_network:
