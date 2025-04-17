@@ -16,6 +16,23 @@ pipeline {
             }
         }
 
+        // stage('Debug - List Files') {
+        //     steps {
+        //         dir('mern-docker-demo') {
+        //             sh 'ls -la'
+        //         }
+        //     }
+        // }
+
+        // Step to clean the previous build: Do this only if clean build is necessary
+        //cleans all the test data/ persistance or lovca databases.
+        // stage ('Clean Previous Build'){
+        //     steps{
+        //         echo "Cleaning up containers, networks, volumes, and images from previous builds"
+        //         sh 'docker compose down -v --rmi all || true'
+        //     }
+        // }      
+
         stage ('Build Docker Images') {
             steps{
                 echo "Building Docker Images for Backend and Frontend"
