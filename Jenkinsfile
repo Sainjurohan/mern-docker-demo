@@ -16,13 +16,13 @@ pipeline {
             }
         }
 
-        // stage('Debug - List Files') {
-        //     steps {
-        //         dir('mern-docker-demo') {
-        //             sh 'ls -la'
-        //         }
-        //     }
-        // }
+        stage('Debug - List Files') {
+            steps {
+                dir('mern-docker-demo') {
+                    sh 'ls -la'
+                }
+            }
+        }
 
         // Step to clean the previous build: Do this only if clean build is necessary
         //cleans all the test data/ persistance or lovca databases.
