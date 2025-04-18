@@ -20,6 +20,7 @@ pipeline {
             steps {
                 dir('mern-docker-demo') {
                     sh 'ls -la'
+                    sh 'cat Jenkinsfile'
                 }
             }
         }
