@@ -1,0 +1,11 @@
+- name: Clone MERN repo
+  git:
+    repo: https://github.com/Sainjurohan/mern-docker-demo.git
+    dest: /home/{{ ansible_user }}/mern-docker-demo
+    force: yes
+
+# - name: Copy Jenkinsfile to workspace (optional)
+#   copy:
+#     src: /home/{{ ansible_user }}/mern-docker-demo/Jenkinsfile
+#     dest: /var/lib/jenkins/workspace/mern-project-pipeline/Jenkinsfile
+#     remote_src: yes

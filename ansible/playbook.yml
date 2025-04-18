@@ -1,0 +1,10 @@
+---
+- name: Deploy Mern Applcation pipeline
+  hosts: servers
+  become: true
+
+  roles:
+    - docker
+    - jenkins
+    - mern-app
+    
