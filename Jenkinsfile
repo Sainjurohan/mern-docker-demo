@@ -51,6 +51,7 @@ pipeline {
         stage('Run Ansible') {
             steps{
                 echo "Starting Ansible"
+                sh 'ssh-keyscan -H 44.244.37.186 >> ~/.ssh/known_hosts'
                 sh 'ansible-playbook -i ansible/inventory.ini ansible/playbook.yml'
             }
         }
