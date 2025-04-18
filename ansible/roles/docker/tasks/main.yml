@@ -1,4 +1,16 @@
 # tasks/install-docker.yml
+- name: Remove broken Jenkins APT repo
+  file:
+    path: /etc/apt/sources.list.d/jenkins.list
+    state: absent
+  become: yes
+
+- name: Remove old Jenkins key
+  file:
+    path: /usr/share/keyrings/jenkins.gpg
+    state: absent
+  become: yes
+
 - name: Install required packages
   apt:
     name:

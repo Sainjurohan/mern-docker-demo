@@ -1,3 +1,13 @@
+- name: Ensure dependencies for secure repo access are installed
+  apt:
+    name:
+      - apt-transport-https
+      - gnupg
+      - curl
+    state: present
+    update_cache: true
+  become: yes
+
 - name: Install Java (required for Jenkins)
   apt:
     name: openjdk-17-jdk
@@ -5,19 +15,16 @@
     update_cache: yes
   become: yes
 
-- name: Add Jenkins GPG key using gpg keyring
-  shell: |
-    curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io.key | gpg --dearmor -o /usr/share/keyrings/jenkins-keyring.gpg
-  args:
-    creates: /usr/share/keyrings/jenkins-keyring.gpg
-  become: yes
-
-- name: Add Jenkins APT repository
-  apt_repository:
-    repo: "deb [signed-by=/usr/share/keyrings/jenkins-keyring.gpg] https://pkg.jenkins.io/debian-stable binary/"
+- name: Add Jenkins apt repository GPG key
+  ansible.builtin.apt_key:
+    url: https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
     state: present
-    filename: jenkins
-  become: yes
+
+- name: Add Jenkins repository
+  ansible.builtin.apt_repository:
+    repo: 'deb https://pkg.jenkins.io/debian-stable binary/'
+    state: present
+    filename: 'jenkins'
 
 - name: Update apt cache
   apt:
