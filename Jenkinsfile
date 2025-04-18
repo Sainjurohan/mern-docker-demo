@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         COMPOSE_PROJECT_NAME = "mern_app"
+        SSH_CREDENTIAL_ID = "a3164f52-32cb-4ffd-a15a-e73fdefd5351"
     }
     
 
@@ -60,13 +61,26 @@ pipeline {
         //     }
         // }
 
+        // stage('Run Ansible') {
+        //     steps{
+        //         echo "Starting Ansible"
+        //         sh 'ssh-keyscan -H 44.244.37.186 >> ~/.ssh/known_hosts'
+        //         sh 'ansible-playbook -i ansible/inventory.ini ansible/playbook.yml'
+        //     }
+        // }
+
         stage('Run Ansible') {
-            steps{
-                echo "Starting Ansible"
-                sh 'ssh-keyscan -H 44.244.37.186 >> ~/.ssh/known_hosts'
-                sh 'ansible-playbook -i ansible/inventory.ini ansible/playbook.yml'
-            }
+            steps {
+                echo "Running Ansible with SSH agent"       
+                sshagent(credentials: ["${env.SSH_CREDENTIAL_ID}"]) {
+                    sh '''
+                        ssh-keyscan -H 44.244.37.186 >> ~/.ssh/known_hosts
+                        ansible-playbook -i ansible/inventory.ini ansible/playbook.yml
+                    '''
         }
+    }
+}
+
 
         
     }
