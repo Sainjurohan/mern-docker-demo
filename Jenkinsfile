@@ -33,19 +33,19 @@ pipeline {
         //     }
         // }      
 
-        stage ('Build Docker Images') {
-            steps{
-                echo "Building Docker Images for Backend and Frontend"
-                sh 'docker compose -f docker-compose.yaml build'
-            }
-        }
+        // stage ('Build Docker Images') {
+        //     steps{
+        //         echo "Building Docker Images for Backend and Frontend"
+        //         sh 'docker compose -f docker-compose.yaml build'
+        //     }
+        // }
 
-        stage('Run Containers') {
-            steps{
-                echo "Starting the containers using docker compose"
-                sh 'docker compose -f docker-compose.yaml up -d'
-            }
-        }
+        // stage('Run Containers') {
+        //     steps{
+        //         echo "Starting the containers using docker compose"
+        //         sh 'docker compose -f docker-compose.yaml up -d'
+        //     }
+        // }
     }
 
     post{
