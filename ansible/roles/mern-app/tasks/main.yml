@@ -9,3 +9,15 @@
 #     src: /home/{{ ansible_user }}/mern-docker-demo/Jenkinsfile
 #     dest: /var/lib/jenkins/workspace/mern-project-pipeline/Jenkinsfile
 #     remote_src: yes
+
+# configuration to build the images and run containers
+- name: Build Docker Images
+  command: docker compose -f docker-compose.yml build
+  args:
+    chdir: /home/{{ ansible_user }}/mern-docker-demo  # Change directory to where the docker-compose.yml is located
+
+- name: Run Docker Containers
+  command: docker compose -f docker-compose.yml up -d
+  args:
+    chdir: /home/{{ ansible_user }}/mern-docker-demo
+
