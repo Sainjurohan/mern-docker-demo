@@ -46,6 +46,15 @@ pipeline {
         //         sh 'docker compose -f docker-compose.yaml up -d'
         //     }
         // }
+
+        stage('Run Ansible') {
+            steps{
+                echo "Starting Ansible"
+                sh 'ansible-playbook -i ansible/inventory.ini ansible/playbook.yml'
+            }
+        }
+
+        
     }
 
     post{
