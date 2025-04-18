@@ -2,7 +2,23 @@
   git:
     repo: https://github.com/Sainjurohan/mern-docker-demo.git
     dest: /home/{{ ansible_user }}/mern-docker-demo
+    version: ansible
     force: yes
+
+# adding debug
+- name: Debug contents of project directory
+  command: ls -la
+  args:
+    chdir: /home/{{ ansible_user }}/mern-docker-demo
+
+- name: Confirm docker-compose.yml exists
+  stat:
+    path: /home/{{ ansible_user }}/mern-docker-demo/docker-compose.yml
+  register: compose_file_check
+
+- name: Print result of stat check
+  debug:
+    var: compose_file_check.stat.exists
 
 # - name: Copy Jenkinsfile to workspace (optional)
 #   copy:
