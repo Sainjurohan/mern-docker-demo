@@ -18,15 +18,15 @@ pipeline {
         }       
 
 
-        stage('Checkout/ Cloning Repo') {
-            steps {
-                echo "Cloning repository..."
-                sh '''
-                rm -rf mern-docker-demo
-                git clone https://github.com/Sainjurohan/mern-docker-demo.git
-                '''
-            }
-        }
+        // stage('Checkout/ Cloning Repo') {
+        //     steps {
+        //         echo "Cloning repository..."
+        //         sh '''
+        //         rm -rf mern-docker-demo
+        //         git clone https://github.com/Sainjurohan/mern-docker-demo.git
+        //         '''
+        //     }
+        // }
 
         stage('Debug - List Files') {
             steps {
