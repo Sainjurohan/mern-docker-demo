@@ -4,8 +4,20 @@ pipeline {
     environment {
         COMPOSE_PROJECT_NAME = "mern_app"
     }
+    
 
     stages{
+
+        stage('Checkout') {
+            steps {
+                checkout([$class: 'GitSCM',
+                  branches: [[name: '*/ansible']],
+                  userRemoteConfigs: [[url: 'https://github.com/Sainjurohan/mern-docker-demo.git']]
+                ])
+            }
+        }       
+
+
         stage('Checkout/ Cloning Repo') {
             steps {
                 echo "Cloning repository..."
