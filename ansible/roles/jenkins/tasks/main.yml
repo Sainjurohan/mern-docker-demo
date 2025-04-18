@@ -2,25 +2,37 @@
   apt:
     name: openjdk-17-jdk
     state: present
+    update_cache: yes
+  become: yes
 
-- name: Add Jenkins repo key
-  apt_key:
-    url: https://pkg.jenkins.io/debian-stable/jenkins.io.key
-    state: present
+- name: Add Jenkins GPG key using gpg keyring
+  shell: |
+    curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io.key | gpg --dearmor -o /usr/share/keyrings/jenkins-keyring.gpg
+  args:
+    creates: /usr/share/keyrings/jenkins-keyring.gpg
+  become: yes
 
-- name: Add Jenkins repository
+- name: Add Jenkins APT repository
   apt_repository:
-    repo: deb https://pkg.jenkins.io/debian-stable binary/
+    repo: "deb [signed-by=/usr/share/keyrings/jenkins-keyring.gpg] https://pkg.jenkins.io/debian-stable binary/"
     state: present
+    filename: jenkins
+  become: yes
+
+- name: Update apt cache
+  apt:
+    update_cache: yes
+  become: yes
 
 - name: Install Jenkins
   apt:
     name: jenkins
     state: present
-    update_cache: yes
+  become: yes
 
 - name: Start and enable Jenkins
   systemd:
     name: jenkins
     enabled: yes
     state: started
+  become: yes
