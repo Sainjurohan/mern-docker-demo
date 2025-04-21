@@ -29,6 +29,16 @@
   vars:
     project_dir: /home/ubuntu/mern-docker-demo
 
+# Changing the project directory ownership to be user i.e. ubuntu in oufr case
+- name: Recreate project directory with correct ownership
+  file:
+    path: /home/{{ ansible_user }}/mern-docker-demo
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+  become: true
+
 # adding debug
 - name: Debug contents of project directory
   command: ls -la
