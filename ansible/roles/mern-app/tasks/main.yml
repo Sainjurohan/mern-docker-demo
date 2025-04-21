@@ -13,6 +13,15 @@
     name: python3-pip
     state: present
 
+# Adding the Configuration to avid dubious ownership error during build
+- name: Add current project directory to Git safe list
+  ansible.builtin.shell: git config --global --add safe.directory "{{ project_dir }}"
+  become: true
+  become_user: ubuntu
+  vars:
+    project_dir: /home/ubuntu/mern-docker-demo
+
+
 - name: Clone MERN repo
   git:
     repo: https://github.com/Sainjurohan/mern-docker-demo.git
