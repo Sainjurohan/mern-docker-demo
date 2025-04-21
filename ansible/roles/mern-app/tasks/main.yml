@@ -25,6 +25,12 @@
   command: ls -la
   args:
     chdir: /home/{{ ansible_user }}/mern-docker-demo
+  register: project_dir_contents
+
+- name: Print project directory contents
+  debug:
+    var: project_dir_contents.stdout_lines
+
 
 - name: Confirm docker-compose.yml exists
   stat:
