@@ -74,7 +74,7 @@ pipeline {
                 echo "Running Ansible with SSH agent"       
                 sshagent(credentials: ["${env.SSH_CREDENTIAL_ID}"]) {
                     sh '''
-                        ssh-keyscan -H 44.244.37.186 >> ~/.ssh/known_hosts
+                        ssh-keyscan -H 35.87.15.27 >> ~/.ssh/known_hosts
                         ansible-playbook -i ansible/inventory.ini ansible/playbook.yml
                     '''
         }
