@@ -43,3 +43,10 @@
     enabled: yes
     state: started
   become: yes
+
+# Adding the Jenkis to the docker user group
+- name: Add jenkins user to the docker group
+  ansible.builtin.user:
+    name: jenkins
+    groups: docker
+    append: yes

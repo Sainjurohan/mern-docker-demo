@@ -41,6 +41,7 @@
   debug:
     var: compose_file_check.stat.exists
 
+# This is similar to the cloning the application to jenkins of server (remember not the local machine)
 # - name: Copy Jenkinsfile to workspace (optional)
 #   copy:
 #     src: /home/{{ ansible_user }}/mern-docker-demo/Jenkinsfile

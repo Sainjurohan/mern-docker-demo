@@ -8,7 +8,7 @@ pipeline {
     
 
     stages{
-
+        // remember this checkout / clone the repo to the jenkins environment of local machine
         stage('Checkout') {
             steps {
                 checkout([$class: 'GitSCM',
