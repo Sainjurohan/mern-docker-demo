@@ -21,13 +21,8 @@
     version: ansible
     force: yes
 
-# Adding the Configuration to avid dubious ownership error during build
-- name: Add current project directory to Git safe list
-  ansible.builtin.shell: git config --global --add safe.directory "{{ project_dir }}"
-  become: true
-  become_user: ubuntu
-  vars:
-    project_dir: /home/ubuntu/mern-docker-demo
+- name: Disable git safe directory check
+  command: git config --global --add safe.directory "*"
 
 # Changing the project directory ownership to be user i.e. ubuntu in oufr case
 - name: Recreate project directory with correct ownership
@@ -38,6 +33,15 @@
     group: "{{ ansible_user }}"
     mode: '0755'
   become: true
+
+# Adding the Configuration to avid dubious ownership error during build
+- name: Add current project directory to Git safe list
+  ansible.builtin.shell: git config --global --add safe.directory "{{ project_dir }}"
+  become: true
+  become_user: ubuntu
+  vars:
+    project_dir: /home/ubuntu/mern-docker-demo
+
 
 # adding debug
 - name: Debug contents of project directory
