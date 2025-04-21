@@ -13,6 +13,11 @@
     name: python3-pip
     state: present
 
+# adding the task to remove the old repo if exists
+- name: Remove old repo if it exists
+  file:
+    path: "/home/{{ ansible_user }}/mern-docker-demo"
+    state: absent
 
 - name: Clone MERN repo
   git:
