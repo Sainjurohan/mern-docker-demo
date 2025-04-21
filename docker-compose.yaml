@@ -6,8 +6,8 @@ services:
     networks:
       - mern_network
     environment:
-      - MONGO_URI: mongodb://mongo:27017/mydatabase
-      - CYPRESS_INSTALL_BINARY=0  
+      MONGO_URI: mongodb://mongo:27017/mydatabase
+      CYPRESS_INSTALL_BINARY: "0"  
     depends_on:
       - mongodb
 
