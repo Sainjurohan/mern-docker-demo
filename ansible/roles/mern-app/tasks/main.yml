@@ -1,3 +1,21 @@
+- name: Ensure Python 3 and pip are installed
+  hosts: all
+  become: yes
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install Python 3
+      apt:
+        name: python3
+        state: present
+
+    - name: Install pip for Python 3
+      apt:
+        name: python3-pip
+        state: present
+
 - name: Clone MERN repo
   git:
     repo: https://github.com/Sainjurohan/mern-docker-demo.git
