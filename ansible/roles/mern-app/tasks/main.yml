@@ -13,7 +13,7 @@
 
 - name: Confirm docker-compose.yml exists
   stat:
-    path: /home/{{ ansible_user }}/mern-docker-demo/docker-compose.yml
+    path: /home/{{ ansible_user }}/mern-docker-demo/docker-compose.yaml
   register: compose_file_check
 
 - name: Print result of stat check
