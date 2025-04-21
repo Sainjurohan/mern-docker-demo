@@ -19,6 +19,7 @@ services:
       - mern_network
     environment:
       REACT_APP_API_URL: http://backend:5050 
+      CYPRESS_INSTALL_BINARY: "0" 
 
   mongodb:
     image: mongo:latest  
