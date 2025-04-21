@@ -51,6 +51,19 @@
     groups: docker
     append: yes
 
+- name: Add Jenkins user to ubuntu group
+  become: yes
+  user:
+    name: jenkins
+    groups: ubuntu
+    append: yes
+
+- name: Ensure group has write access
+  file:
+    path: "/home/ubuntu/mern-docker-demo"
+    mode: "g+rwx"
+    recurse: yes
+
 # Adding the configuration to restart jenkins after the change is made
 - name: Restart Jenkins to apply group changes
   ansible.builtin.service:
