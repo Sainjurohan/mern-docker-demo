@@ -29,14 +29,14 @@ pipeline {
         //     }
         // }
 
-        stage('Debug - List Files') {
-            steps {
-                dir('mern-docker-demo') {
-                    sh 'ls -la'
-                    sh 'cat Jenkinsfile'
-                }
-            }
-        }
+        // stage('Debug - List Files') {
+        //     steps {
+        //         dir('mern-docker-demo') {
+        //             sh 'ls -la'
+        //             sh 'cat Jenkinsfile'
+        //         }
+        //     }
+        // }
 
         // Step to clean the previous build: Do this only if clean build is necessary
         //cleans all the test data/ persistance or lovca databases.
