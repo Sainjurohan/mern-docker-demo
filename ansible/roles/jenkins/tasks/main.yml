@@ -50,3 +50,11 @@
     name: jenkins
     groups: docker
     append: yes
+
+# Adding the configuration to restart jenkins after the change is made
+- name: Restart Jenkins to apply group changes
+  ansible.builtin.service:
+    name: jenkins
+    state: restarted
+  become: true
+
